@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+$dark-color-1: #2C3639;
+$dark-color-2: #3F4E4F;
+$dark-color-3: #A27B5C;
+$dark-color-4: #DCD7C9;
+
+.bg-dark-1 {
+  background-color: $dark-color-1;
+}
+.bg-dark-2 {
+  background-color: $dark-color-2;
+}
+.bg-dark-3 {
+  background-color: $dark-color-3;
+}
+.bg-dark-4 {
+  background-color: $dark-color-4;
+}
+
+.text-dark-1 {
+  color: $dark-color-1;
+}
+.text-dark-2 {
+  color: $dark-color-2;
+}
+.text-dark-3 {
+  color: $dark-color-3;
+}
+.text-dark-4 {
+  color: $dark-color-4;
+}
+
+.border-dark-1 {
+  border-color: $dark-color-1;
+}
+.border-dark-2 {
+  border-color: $dark-color-2;
+}
+.border-dark-3 {
+  border-color: $dark-color-3;
+}
+.border-dark-4 {
+  border-color: $dark-color-4;
+}
+
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  font-family: "Inter Tight", sans-serif;
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
