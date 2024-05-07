@@ -7,7 +7,7 @@ import { twMerge } from 'tailwind-merge';
  * @returns {string} - class names joined by space
  */
 function cn(...classes: ClassValue[]): string {
-  return twMerge(clsx(...classes));
+	return twMerge(clsx(...classes));
 }
 
 export default cn;
