@@ -10,7 +10,8 @@
     "lint:fix": "next lint --fix",
     "stylelint": "npx stylelint \"**/*.scss\"",
     "stylelint:fix": "npx stylelint \"**/*.scss\" --fix",
-    "prepare": "husky"
+    "prepare": "husky",
+    "ci": "npm install --slient && npm run lint && npm run stylelint"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
