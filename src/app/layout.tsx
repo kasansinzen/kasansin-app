@@ -3,6 +3,7 @@ import './globals.scss';
 import React from 'react';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
+import { ProfileProvider } from '@/providers/ProfileProvider';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -18,7 +19,9 @@ export default function RootLayout({
 }>) {
 	return (
 		<html lang="en">
-			<body className={inter.className}>{children}</body>
+			<ProfileProvider>
+				<body className={inter.className}>{children}</body>
+			</ProfileProvider>
 		</html>
 	);
 }

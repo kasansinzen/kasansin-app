@@ -1,6 +1,6 @@
 import React, { FC, ReactNode } from 'react';
 import Container from './Container';
-import cn from '@/utils/cn';
+import cn from '@/utils/helpers/cn';
 
 interface IProps {
 	className?: string;

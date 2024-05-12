@@ -15,5 +15,11 @@
   },
   "storage": {
     "rules": "storage.rules"
+  },
+  "function": {
+    "predeploy": [
+      "npm run lint",
+      "npm run stylelint"
+    ]
   }
 }

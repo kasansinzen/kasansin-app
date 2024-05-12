@@ -1,6 +1,6 @@
 import React, { FC, memo } from 'react';
 import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
-import cn from '@/utils/cn';
+import cn from '@/utils/helpers/cn';
 import FontAwesome from './FontAwesome';
 
 interface IProps {

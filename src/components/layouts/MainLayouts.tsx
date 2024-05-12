@@ -3,7 +3,7 @@
 import React, { type FunctionComponent, type PropsWithChildren } from 'react';
 import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import cn from '@/utils/cn';
+import cn from '@/utils/helpers/cn';
 import FontAwsome from '../bases/FontAwesome';
 
 const navigation: { name: string; href: string; current: boolean }[] = [
