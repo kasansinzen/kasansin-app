@@ -1,18 +1,20 @@
 'use client';
 
-import React, { FC, Fragment, useEffect } from 'react';
+import React, { FC, Fragment, useEffect, useState } from 'react';
 import About from './components/About';
 import Experience from './components/Experience';
 import Section from '@/components/bases/Section';
 import Image from 'next/image';
 import { useProfile } from '@/providers/ProfileProvider';
 import { useLoading } from '@/providers/LoadingProvider';
-import { FirebaseService } from '@/utils/services/firebaseService';
 import { formatString } from '@/utils/helpers/textFormat';
+import { StorageFirebaseService, profileImgPath } from '@/utils/services/firebase/storage.firebase';
+import { DatabaseFirebaseService } from '@/utils/services/firebase/database.firebase';
 
 export const Profile: FC = () => {
 	const { profile, setProfile } = useProfile();
 	const { setIsLoading } = useLoading();
+	const [profileImage, setProfileImage] = useState<string>('');
 
 	const sections: FC[] = [About, Experience];
 	const getBgThemeByIndex = (index: number): string => {
@@ -20,10 +22,15 @@ export const Profile: FC = () => {
 	};
 
 	useEffect(() => {
-		const firebase = new FirebaseService();
-		firebase.getProfileDb().then((val) => {
+		const database = new DatabaseFirebaseService();
+		const storage = new StorageFirebaseService();
+
+		database.getProfileDb().then((val) => {
 			setProfile(val);
 			setIsLoading(false);
+		});
+		storage.downloadImage(profileImgPath).then((val) => {
+			setProfileImage(val || '');
 		});
 	}, []);
 
@@ -31,13 +38,15 @@ export const Profile: FC = () => {
 		<Fragment>
 			<div className="w-full pt-32 pb-20 sm:pb-28 bg-dark-2">
 				<div className="flex flex-col items-center">
-					<Image
-						className="h-80 w-auto mb-10 rounded-full shadow-lg"
-						src="/img/profile.jpg"
-						alt="Kasansin"
-						width={500}
-						height={500}
-					/>
+					{profileImage && (
+						<Image
+							className="h-80 w-auto mb-10 rounded-full shadow-lg"
+							src={profileImage}
+							alt="Kasansin"
+							width={500}
+							height={500}
+						/>
+					)}
 					<h5 className="mb-1 text-2xl sm:text-6xl font-medium text-white uppercase">
 						{formatString(`I'M ${profile?.fullname}`)}
 					</h5>
