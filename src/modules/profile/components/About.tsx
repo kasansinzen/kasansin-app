@@ -1,9 +1,9 @@
 import TitleSection from '@/components/bases/TitleSection';
-import { useProfile } from '@/providers/ProfileProvider';
+import { useProfileContact } from '@/providers/ProfileContactProvider';
 import React, { FC, memo } from 'react';
 
 const About: FC = () => {
-	const { profile } = useProfile();
+	const { profile } = useProfileContact();
 	return (
 		<div>
 			<TitleSection title="About" />

@@ -1,20 +1,13 @@
 'use client';
 
-import React, { type FunctionComponent, type PropsWithChildren } from 'react';
+import React, { memo, type FunctionComponent, type PropsWithChildren } from 'react';
 import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import cn from '@/utils/helpers/cn';
 import FontAwsome from '../bases/FontAwesome';
+import { useProfileContact } from '@/providers/ProfileContactProvider';
 
-const navigation: { name: string; href: string; current: boolean }[] = [
-	// { name: 'About', href: '#', current: true },
-	// { name: 'Experience', href: '#', current: false },
-];
-const connects: { icon: string; href: string }[] = [
-	{ icon: 'fa-brands fa-square-github', href: '#' },
-	{ icon: 'fa-brands fa-linkedin', href: '#' },
-	{ icon: 'fa-solid fa-envelope', href: '#' },
-];
+const navigation: { name: string; href: string; current: boolean }[] = [];
 
 export interface LayoutConfigProps {
 	className?: string;
@@ -22,6 +15,9 @@ export interface LayoutConfigProps {
 
 export const MainLayoutPage: FunctionComponent<PropsWithChildren<LayoutConfigProps>> = (props) => {
 	const { children } = props;
+
+	const { contacts } = useProfileContact();
+
 	const layoutClassName = 'max-w-7xl px-2 sm:px-6 lg:px-8';
 	return (
 		<div>
@@ -100,8 +96,14 @@ export const MainLayoutPage: FunctionComponent<PropsWithChildren<LayoutConfigPro
 					<div className="px-4 py-4 md:flex md:items-center md:justify-between">
 						<span className="text-sm text-gray-500 dark:text-gray-300 sm:text-center">© 2024 Kasansin Khamsat.</span>
 						<div className="flex mt-4 sm:justify-center md:mt-0 space-x-5 rtl:space-x-reverse">
-							{connects.map((item, index) => (
-								<a key={index} href={item.href} className="text-gray-400 hover:text-white text-2xl">
+							{contacts.map((item, index) => (
+								<a
+									key={index}
+									href={item.link}
+									target="_blank"
+									className="text-gray-400 hover:text-white text-2xl"
+									rel="noreferrer"
+								>
 									<FontAwsome icon={item.icon} />
 								</a>
 							))}
@@ -113,4 +115,4 @@ export const MainLayoutPage: FunctionComponent<PropsWithChildren<LayoutConfigPro
 	);
 };
 
-export default MainLayoutPage;
+export default memo(MainLayoutPage);

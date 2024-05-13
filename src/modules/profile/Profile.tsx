@@ -1,38 +1,32 @@
 'use client';
 
-import React, { FC, Fragment, useEffect, useState } from 'react';
+import React, { FC, Fragment, memo, useEffect, useState } from 'react';
 import About from './components/About';
 import Experience from './components/Experience';
 import Section from '@/components/bases/Section';
 import Image from 'next/image';
-import { useProfile } from '@/providers/ProfileProvider';
-import { useLoading } from '@/providers/LoadingProvider';
+import { useProfileContact } from '@/providers/ProfileContactProvider';
 import { formatString } from '@/utils/helpers/textFormat';
+import useLoadDatabase from '@/hooks/useLoadDatabase';
 import { StorageFirebaseService, profileImgPath } from '@/utils/services/firebase/storage.firebase';
-import { DatabaseFirebaseService } from '@/utils/services/firebase/database.firebase';
 
 export const Profile: FC = () => {
-	const { profile, setProfile } = useProfile();
-	const { setIsLoading } = useLoading();
-	const [profileImage, setProfileImage] = useState<string>('');
+	const { profile } = useProfileContact();
+	const [profileImage, setPathProfileImage] = useState<string>('');
+
+	useEffect(() => {
+		const storage = new StorageFirebaseService();
+		storage.downloadImage(profileImgPath).then((path) => {
+			setPathProfileImage(path);
+		});
+	}, []);
+
+	useLoadDatabase();
 
 	const sections: FC[] = [About, Experience];
 	const getBgThemeByIndex = (index: number): string => {
 		return index % 2 === 0 ? 'bg-dark-3' : 'bg-dark-4';
 	};
-
-	useEffect(() => {
-		const database = new DatabaseFirebaseService();
-		const storage = new StorageFirebaseService();
-
-		database.getProfileDb().then((val) => {
-			setProfile(val);
-			setIsLoading(false);
-		});
-		storage.downloadImage(profileImgPath).then((val) => {
-			setProfileImage(val || '');
-		});
-	}, []);
 
 	return (
 		<Fragment>
@@ -63,4 +57,4 @@ export const Profile: FC = () => {
 	);
 };
 
-export default Profile;
+export default memo(Profile);

@@ -10,10 +10,12 @@ export class DatabaseFirebaseService extends CoreFirebaseService {
 		this._database = getDatabase(this.app);
 	}
 
-	async getProfileDb() {
-		const rootRef = ref(this._database);
-		const snapshot = await get(rootRef);
+	get rootRef() {
+		return ref(this._database);
+	}
 
-		return snapshot.child(DatabasePath.Profile).val();
+	async getResult<T>(path: DatabasePath): Promise<T> {
+		const snapshot = await get(this.rootRef);
+		return snapshot.child(path).val();
 	}
 }

@@ -1,10 +1,10 @@
 import TitleSection from '@/components/bases/TitleSection';
-import { useProfile } from '@/providers/ProfileProvider';
+import { useProfileContact } from '@/providers/ProfileContactProvider';
 import { formatShortDate } from '@/utils/helpers/dateFormat';
 import React, { FC, memo } from 'react';
 
 const Experience: FC = () => {
-	const { profile } = useProfile();
+	const { profile } = useProfileContact();
 	const items = profile?.experiences || [];
 	return (
 		<div className="text-dark-1">

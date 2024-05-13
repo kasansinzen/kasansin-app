@@ -5,10 +5,10 @@ import { LoadingProvider } from '@/providers/LoadingProvider';
 
 export default function Home() {
 	return (
-		<MainLayoutPage>
-			<LoadingProvider>
+		<LoadingProvider>
+			<MainLayoutPage>
 				<Profile />
-			</LoadingProvider>
-		</MainLayoutPage>
+			</MainLayoutPage>
+		</LoadingProvider>
 	);
 }

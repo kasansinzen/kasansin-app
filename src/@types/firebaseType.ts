@@ -1,11 +1,11 @@
 export interface RootDatabase {
 	profile: ProfileDatabase;
+	contacts: ContactDatabase[];
 }
-
-// ENUM
 
 export enum DatabasePath {
 	Profile = 'profile',
+	Contacts = 'contacts',
 }
 
 export interface ProfileDatabase {
@@ -13,6 +13,12 @@ export interface ProfileDatabase {
 	career: string;
 	about: AboutProfile;
 	experiences: ExperienceProfile[];
+}
+
+export interface ContactDatabase {
+	channel: string;
+	link: string;
+	icon: string;
 }
 
 export interface AboutProfile {
