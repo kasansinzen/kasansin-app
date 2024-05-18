@@ -4,6 +4,7 @@ import React from 'react';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ProfileContactProvider } from '@/providers/ProfileContactProvider';
+import { MainLayoutPage } from '@/components/layouts/MainLayouts';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -22,7 +23,7 @@ export default function RootLayout({
 		<html lang="en">
 			<ProfileContactProvider>
 				<body className={inter.className} suppressHydrationWarning={true}>
-					{children}
+					<MainLayoutPage>{children}</MainLayoutPage>
 				</body>
 			</ProfileContactProvider>
 		</html>

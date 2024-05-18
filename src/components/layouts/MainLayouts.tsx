@@ -1,11 +1,12 @@
 'use client';
 
-import React, { memo, type FunctionComponent, type PropsWithChildren } from 'react';
+import React, { FC, type PropsWithChildren } from 'react';
 import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import cn from '@/utils/helpers/cn';
 import FontAwsome from '../bases/FontAwesome';
 import { useProfileContact } from '@/providers/ProfileContactProvider';
+import useLogEventDevice from '@/hooks/useLogEventDevice';
 
 const navigation: { name: string; href: string; current: boolean }[] = [];
 
@@ -13,10 +14,11 @@ export interface LayoutConfigProps {
 	className?: string;
 }
 
-export const MainLayoutPage: FunctionComponent<PropsWithChildren<LayoutConfigProps>> = (props) => {
+export const MainLayoutPage: FC<PropsWithChildren<LayoutConfigProps>> = (props) => {
 	const { children } = props;
-
 	const { contacts } = useProfileContact();
+
+	useLogEventDevice();
 
 	const layoutClassName = 'max-w-7xl px-2 sm:px-6 lg:px-8';
 	return (
@@ -115,4 +117,4 @@ export const MainLayoutPage: FunctionComponent<PropsWithChildren<LayoutConfigPro
 	);
 };
 
-export default memo(MainLayoutPage);
+export default MainLayoutPage;
