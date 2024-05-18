@@ -9,6 +9,7 @@ import { useProfileContact } from '@/providers/ProfileContactProvider';
 import { formatString } from '@/utils/helpers/textFormat';
 import useLoadDatabase from '@/hooks/useLoadDatabase';
 import { StorageFirebaseService, profileImgPath } from '@/utils/services/firebase/storage.firebase';
+import LoadingOverlay from '@/components/bases/LoadingOverlay';
 
 export const Profile: FC = () => {
 	const { profile } = useProfileContact();
@@ -21,7 +22,7 @@ export const Profile: FC = () => {
 		});
 	}, []);
 
-	useLoadDatabase();
+	const isDirty = useLoadDatabase();
 
 	const sections: FC[] = [About, Experience];
 	const getBgThemeByIndex = (index: number): string => {
@@ -53,6 +54,7 @@ export const Profile: FC = () => {
 					<Component />
 				</Section>
 			))}
+			<LoadingOverlay isLoading={!isDirty} />
 		</Fragment>
 	);
 };

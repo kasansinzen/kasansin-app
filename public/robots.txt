@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://kasansin-3e31b.web.app/
+
+# Sitemaps
+Sitemap: https://kasansin-3e31b.web.app/sitemap.xml
