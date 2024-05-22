@@ -12,7 +12,9 @@
     "stylelint:fix": "npx stylelint \"**/*.scss\" --fix",
     "prepare": "husky",
     "ci": "npm install --slient && npm run lint && npm run stylelint",
-    "postbuild": "next-sitemap"
+    "postbuild": "next-sitemap",
+    "test": "jest",
+    "test:unit:serve": "jest --watch"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.2",
@@ -32,7 +34,12 @@
     "tailwind-merge": "^2.3.0"
   },
   "devDependencies": {
+    "@babel/preset-env": "^7.24.5",
+    "@babel/preset-react": "^7.24.1",
     "@next/eslint-plugin-next": "^14.2.3",
+    "@testing-library/jest-dom": "^6.4.5",
+    "@testing-library/react": "^15.0.7",
+    "@types/jest": "^29.5.12",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
@@ -45,12 +52,16 @@
     "eslint-plugin-react": "^7.34.1",
     "eslint-plugin-react-hooks": "^4.6.2",
     "husky": "^9.0.11",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "postcss": "^8",
     "prettier": "^3.2.5",
     "sass": "^1.76.0",
     "stylelint": "^16.3.1",
     "stylelint-config-standard-scss": "^13.1.0",
     "tailwindcss": "^3.3.0",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
     "typescript": "^5"
   }
 }

@@ -3,27 +3,31 @@ import { faAngleDown } from '@fortawesome/free-solid-svg-icons';
 import cn from '@/utils/helpers/cn';
 import FontAwesome from './FontAwesome';
 
-interface IProps {
+export interface DividerProps {
 	showIcon?: boolean;
 	title?: string;
 	lineClassName?: string;
 }
-const Divider: FC<IProps> = ({ showIcon, title, lineClassName }) => {
+const Divider: FC<DividerProps> = ({ showIcon, title, lineClassName }) => {
 	const isMiddle = !!showIcon || !!title;
 	return (
 		<div className="flex items-center">
-			<div className={cn(['w-full border-t border-gray-300', lineClassName])}></div>
+			<div className={cn(['w-full border-t border-gray-300', lineClassName])} data-testid="divider-line"></div>
 			{isMiddle && (
 				<div className="mx-4">
 					{showIcon && (
-						<i className="mx-3">
+						<i className="mx-3" data-testid="divider-icon">
 							<FontAwesome icon={faAngleDown} />
 						</i>
 					)}
-					{title && <span className="text-3xl">{title}</span>}
+					{!showIcon && title && (
+						<span className="text-3xl" data-testid="divider-title">
+							{title}
+						</span>
+					)}
 				</div>
 			)}
-			<div className={cn(['w-full border-t border-gray-300', lineClassName])}></div>
+			<div className={cn(['w-full border-t border-gray-300', lineClassName])} data-testid="divider-line"></div>
 		</div>
 	);
 };

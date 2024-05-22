@@ -5,7 +5,7 @@ import { useEffect } from 'react';
 const useLogEventDevice = () => {
 	useEffect(() => {
 		const analyticService = new AnalyticFirebaseService();
-		analyticService.logEvent('[device-used]', { devide: getDevice() });
+		analyticService.logEvent('[device-used]', { device: getDevice() });
 		return () => {};
 	}, []);
 };

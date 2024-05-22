@@ -8,7 +8,7 @@ const About: FC = () => {
 		<div>
 			<TitleSection title="About" />
 			{(profile?.about.descriptions || []).map((item, index) => (
-				<p key={index} className="indent-8 mb-4">
+				<p key={index} className="indent-8 mb-4" data-testid="about-desc">
 					{item}
 				</p>
 			))}

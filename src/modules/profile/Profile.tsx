@@ -22,7 +22,7 @@ export const Profile: FC = () => {
 		});
 	}, []);
 
-	const isDirty = useLoadDatabase();
+	const { isLoading } = useLoadDatabase();
 
 	const sections: FC[] = [About, Experience];
 	const getBgThemeByIndex = (index: number): string => {
@@ -54,7 +54,7 @@ export const Profile: FC = () => {
 					<Component />
 				</Section>
 			))}
-			<LoadingOverlay isLoading={!isDirty} />
+			<LoadingOverlay isLoading={isLoading} />
 		</Fragment>
 	);
 };

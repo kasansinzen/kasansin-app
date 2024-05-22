@@ -8,7 +8,7 @@ interface IProps {
 }
 const Section: FC<IProps> = ({ children, className }) => {
 	return (
-		<section className={cn(['py-16', className])}>
+		<section className={cn(['py-16', className])} data-testid="section">
 			<Container>{children}</Container>
 		</section>
 	);

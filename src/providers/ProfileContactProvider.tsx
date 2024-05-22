@@ -3,13 +3,13 @@
 import React, { Dispatch, SetStateAction, useContext, createContext, FC, PropsWithChildren, useState } from 'react';
 import { ContactDatabase, ProfileDatabase } from '@/@types/firebaseType';
 
-interface ProfileContactProps {
+export interface ProfileContactProps {
 	profile: ProfileDatabase | undefined;
 	setProfile: Dispatch<SetStateAction<ProfileDatabase | undefined>>;
 	contacts: ContactDatabase[];
 	setContacts: Dispatch<SetStateAction<ContactDatabase[]>>;
 }
-const ProfileContactContext = createContext<ProfileContactProps | undefined>(undefined);
+export const ProfileContactContext = createContext<ProfileContactProps | undefined>(undefined);
 
 export const useProfileContact = () => {
 	const context = useContext(ProfileContactContext);

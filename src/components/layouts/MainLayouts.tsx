@@ -31,7 +31,10 @@ export const MainLayoutPage: FC<PropsWithChildren<LayoutConfigProps>> = (props) 
 								<div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
 									{/* Mobile menu button*/}
 									{!!navigation.length && (
-										<Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+										<Disclosure.Button
+											className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+											data-testid="mobile-menu"
+										>
 											<span className="absolute -inset-0.5" />
 											<span className="sr-only">Open main menu</span>
 											{open ? (
@@ -105,6 +108,7 @@ export const MainLayoutPage: FC<PropsWithChildren<LayoutConfigProps>> = (props) 
 									target="_blank"
 									className="text-gray-400 hover:text-white text-2xl"
 									rel="noreferrer"
+									data-testid="contact-link"
 								>
 									<FontAwsome icon={item.icon} />
 								</a>
