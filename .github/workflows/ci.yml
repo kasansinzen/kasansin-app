@@ -1,0 +1,37 @@
+name: "kasansin-app CI"
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Setup NodeJS
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+      
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build application
+        run: npm run build
+
+      - name: ESLint and Prettierrc
+        run: npm run lint
+      
+      - name: Stylelint
+        run: npm run stylelint
+
+      - name: Unit Test
+        run: npm run test:ci
