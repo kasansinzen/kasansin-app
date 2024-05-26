@@ -6,6 +6,10 @@ This project is a personal profile showcasing my skills and passions. It serves 
 2. Advanced Learning in Firebase: I aim to deepen my understanding of Firebase by integrating it into this project.
 3. Code Quality and Best Practices: I am incorporating various tools and techniques to ensure high code quality. This includes automated checks and testing.
 
+## Demo
+
+Visit here https://kasansin-3e31b.web.app/
+
 ## Features
 - NextJS 14
 - React 18
