@@ -34,4 +34,4 @@ jobs:
         run: npm run stylelint
 
       - name: Unit Test
-        run: npm run test:ci
+        run: npm run test
