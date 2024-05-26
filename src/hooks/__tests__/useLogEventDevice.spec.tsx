@@ -24,7 +24,7 @@ const setup = (additionalProps: { profileContact?: ProfileContactProps } = {}) =
 };
 
 describe('[hooks] useLogEventDevice', () => {
-	beforeEach(() => {
+	afterEach(() => {
 		jest.clearAllMocks();
 	});
 

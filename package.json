@@ -11,7 +11,7 @@
     "stylelint": "npx stylelint \"**/*.scss\"",
     "stylelint:fix": "npx stylelint \"**/*.scss\" --fix",
     "prepare": "husky",
-    "ci": "npm install --slient && npm run lint && npm run stylelint",
+    "ci": "npm install --slient && npm run lint && npm run stylelint && npm run test",
     "postbuild": "next-sitemap",
     "test": "jest",
     "test:unit:serve": "jest --watch"

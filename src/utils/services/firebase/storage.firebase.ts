@@ -16,7 +16,7 @@ export class StorageFirebaseService extends CoreFirebaseService {
 		this.analyticService = new AnalyticFirebaseService();
 	}
 
-	async downloadImage(path: string) {
+	async downloadImage(path: string): Promise<string> {
 		const pathRefference = ref(this._storage, path);
 		const url = await getDownloadURL(pathRefference).catch((e) => {
 			this.analyticService.logEvent(`${prefixDownloadImage} error`, e);
