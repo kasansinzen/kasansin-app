@@ -1,27 +1,25 @@
 'use client';
 
-import React, { type FunctionComponent, type PropsWithChildren } from 'react';
+import React, { FC, type PropsWithChildren } from 'react';
 import { Disclosure } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
-import cn from '@/utils/cn';
+import cn from '@/utils/helpers/cn';
 import FontAwsome from '../bases/FontAwesome';
+import { useProfileContact } from '@/providers/ProfileContactProvider';
+import useLogEventDevice from '@/hooks/useLogEventDevice';
 
-const navigation: { name: string; href: string; current: boolean }[] = [
-	// { name: 'About', href: '#', current: true },
-	// { name: 'Experience', href: '#', current: false },
-];
-const connects: { icon: string; href: string }[] = [
-	{ icon: 'fa-brands fa-square-github', href: '#' },
-	{ icon: 'fa-brands fa-linkedin', href: '#' },
-	{ icon: 'fa-solid fa-envelope', href: '#' },
-];
+const navigation: { name: string; href: string; current: boolean }[] = [];
 
 export interface LayoutConfigProps {
 	className?: string;
 }
 
-export const MainLayoutPage: FunctionComponent<PropsWithChildren<LayoutConfigProps>> = (props) => {
+export const MainLayoutPage: FC<PropsWithChildren<LayoutConfigProps>> = (props) => {
 	const { children } = props;
+	const { contacts } = useProfileContact();
+
+	useLogEventDevice();
+
 	const layoutClassName = 'max-w-7xl px-2 sm:px-6 lg:px-8';
 	return (
 		<div>
@@ -32,15 +30,20 @@ export const MainLayoutPage: FunctionComponent<PropsWithChildren<LayoutConfigPro
 							<div className="relative flex h-16 items-center justify-between">
 								<div className="absolute inset-y-0 left-0 flex items-center sm:hidden">
 									{/* Mobile menu button*/}
-									<Disclosure.Button className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-										<span className="absolute -inset-0.5" />
-										<span className="sr-only">Open main menu</span>
-										{open ? (
-											<XMarkIcon className="block h-6 w-6" aria-hidden="true" />
-										) : (
-											<Bars3Icon className="block h-6 w-6" aria-hidden="true" />
-										)}
-									</Disclosure.Button>
+									{!!navigation.length && (
+										<Disclosure.Button
+											className="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+											data-testid="mobile-menu"
+										>
+											<span className="absolute -inset-0.5" />
+											<span className="sr-only">Open main menu</span>
+											{open ? (
+												<XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+											) : (
+												<Bars3Icon className="block h-6 w-6" aria-hidden="true" />
+											)}
+										</Disclosure.Button>
+									)}
 								</div>
 								<div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-between">
 									<div className="flex flex-shrink-0 items-center">
@@ -98,8 +101,15 @@ export const MainLayoutPage: FunctionComponent<PropsWithChildren<LayoutConfigPro
 					<div className="px-4 py-4 md:flex md:items-center md:justify-between">
 						<span className="text-sm text-gray-500 dark:text-gray-300 sm:text-center">© 2024 Kasansin Khamsat.</span>
 						<div className="flex mt-4 sm:justify-center md:mt-0 space-x-5 rtl:space-x-reverse">
-							{connects.map((item, index) => (
-								<a key={index} href={item.href} className="text-gray-400 hover:text-white text-2xl">
+							{contacts.map((item, index) => (
+								<a
+									key={index}
+									href={item.link}
+									target="_blank"
+									className="text-gray-400 hover:text-white text-2xl"
+									rel="noreferrer"
+									data-testid="contact-link"
+								>
 									<FontAwsome icon={item.icon} />
 								</a>
 							))}

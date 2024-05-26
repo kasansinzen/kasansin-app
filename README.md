@@ -1,4 +1,51 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Kasansin App
+
+This project is a personal profile showcasing my skills and passions. It serves multiple purposes:
+
+1. Re-skilling in Next.js and React: I am using this project to refresh and enhance my knowledge of Next.js and React.
+2. Advanced Learning in Firebase: I aim to deepen my understanding of Firebase by integrating it into this project.
+3. Code Quality and Best Practices: I am incorporating various tools and techniques to ensure high code quality. This includes automated checks and testing.
+
+## Features
+- NextJS 14
+- React 18
+- Typescript
+- Tailwind CSS 3 - Pre-setup with PostCSS Nesting and Import.
+- Jest 29 - Typescript testing framework with unit-test and coverage
+- Firebase - Google platform for web and mobile applications.
+  - Hosting
+  - Realtime Database
+  - Storage
+  - Google Analytics
+- Husky - Run scripts on staged files before committed.
+- EsLint - TypeaScript code linter for identifying and fixing problems.
+- StyleLint - SCSS linter for enforcing consistent conventions.
+- Prettier - Opinionated code formatter for various languages.
+- Font Awesome - Icon toolkit for scalable vector icons.
+
+## Structure
+```
+kasansin-app/
+├── coverage/
+├── node_modules/
+├── public/
+└── src/
+    ├── @types/
+    ├── app/
+    ├── components/
+    │   ├── bases/
+    │   └── layouts/
+    ├── hooks/
+    ├── modules/
+    │   └── profile/
+    │       ├── components/
+    │       └── Profile.tsx
+    ├── providers
+    └── utils/
+        ├── helpers/
+        └── services/
+            └── firebases/
+```
 
 ## Getting Started
 
@@ -29,8 +76,39 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Continue Integration
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+We use GitHub Actions to run our tests automatically on every push to the repository. The configuration is defined in .github/workflows/ci.yml.
+
+Example workflow configuration:
+
+```
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+      
+      - name: Setup NodeJS
+        uses: actions/setup-node@v2
+        with:
+          node-version: '20'
+      
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build application
+        run: npm run build
+
+      - name: ESLint and Prettierrc
+        run: npm run lint
+      
+      - name: Stylelint
+        run: npm run stylelint
+
+      - name: Unit Test
+        run: npm run test:ci
+```
